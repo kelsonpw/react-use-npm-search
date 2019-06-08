@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import dlv from "dlv";
+import { useEffect, useState } from 'react';
+import dlv from 'dlv';
 
 const fetchPath = path =>
   fetch(`https://api.npms.io/v2/search?q=${path}`).then(res => res.json());
@@ -7,11 +7,12 @@ const fetchPath = path =>
 const cache = {};
 const delve = path => obj => dlv(obj, path);
 
-function usePackageSearch(term) {
-  const path = term.toLowerCase().replace(/ /g, "+");
+function usePackageSearch({ term, fields, amount }) {
+  const path = term.toLowerCase().replace(/ /g, '+');
   const [data, setData] = useState(cache[path]);
 
-  const parse = items => items.slice(0, 10).map(delve("package.name"));
+  const parse = items =>
+    items.slice(0, amount || 10).map(delve('package.' + fields.join('.')));
 
   useEffect(() => {
     if (!cache[path]) {
@@ -27,4 +28,4 @@ function usePackageSearch(term) {
   return data;
 }
 
-export { usePackageSearch };
+export default usePackageSearch;
