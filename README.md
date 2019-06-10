@@ -7,6 +7,8 @@
 
 A simple helpful hook for gathering and searching for npm packages.
 
+This is a work in progress, and currently only returns a list of names.
+
 ## Install
 
 ```bash
