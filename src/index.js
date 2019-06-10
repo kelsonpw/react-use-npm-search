@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import invariant from 'invariant';
 import dlv from 'dlv';
 
 const fetchPath = path =>
