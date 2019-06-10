@@ -7,12 +7,13 @@ const fetchPath = path =>
 const cache = {};
 const delve = path => obj => dlv(obj, path);
 
-function usePackageSearch({ term, fields, amount }) {
+function usePackageSearch({ term, amount }) {
+  invariant(typeof term === 'string', 'You must provide a search term string ');
   const path = term.toLowerCase().replace(/ /g, '+');
-  const [data, setData] = useState(cache[path]);
+  const [data, setData] = useState(cache[path] || []);
 
   const parse = items =>
-    items.slice(0, amount || 10).map(delve('package.' + fields.join('.')));
+    items.slice(0, amount || 10).map(delve('package.name'));
 
   useEffect(() => {
     if (!cache[path]) {

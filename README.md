@@ -20,10 +20,9 @@ import React from 'react';
 import useNpmSearch from 'react-use-npm-search';
 
 function App() {
-  const [value, setValue] = React.useState('react');
+  const [searchTerm, setSearchTerm] = React.useState('react');
   const results = useNpmSearch({
-    term: value,
-    fields: ['name'],
+    term: searchTerm,
     amount: 10,
   });
 }
