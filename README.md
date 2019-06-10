@@ -10,7 +10,7 @@ A simple helpful hook for gathering and searching for npm packages.
 ## Install
 
 ```bash
-yarn add react-hanger
+yarn add react-use-npm-search
 ```
 
 ## Usage
